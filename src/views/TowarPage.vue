@@ -11,7 +11,7 @@
             </div>
             <div class="towar-body">
                 <div class="towar-image">
-                    <img class="towar-image-photo" :src="filter(PageInfo, $route.params.id).imgSrc"   alt="Хинкали жаренные">
+                    <img class="towar-image-photo" :src="'..' + filter(PageInfo, $route.params.id).imgSrc"   alt="Хинкали жаренные">
                 </div>
                 <div class="towar-content">
                     <div class="towar-views">

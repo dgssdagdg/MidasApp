@@ -134,7 +134,7 @@
                             :key="FoodInfo.id"
                         >
                             <div class="order-right-img">
-                                <img :src="FoodInfo.imgSrc" :alt="FoodInfo.title">
+                                <img :src="'.' + FoodInfo.imgSrc" :alt="FoodInfo.title">
                             </div>
                             <div class="order-right-content">
                                 <div class="order-right-name">{{ FoodInfo.title }}</div>

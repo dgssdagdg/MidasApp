@@ -5,7 +5,7 @@
             :key="popular.id"
         >
             <div class="popular-img item-img">
-                <img :src="popular.imgSrc" :alt="popular.title">
+                <img :src="'.' + popular.imgSrc" :alt="popular.title">
             </div>
             <div class="popular-name item-name">{{ popular.title }}</div>
             <div class="popular-gram item-gram">{{ popular.gram }}</div>

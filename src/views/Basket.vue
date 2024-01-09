@@ -21,7 +21,7 @@
                         :key="FoodInfo.id"
                     >
                         <div class="basket-img">
-                            <img :src="FoodInfo.imgSrc" :alt="FoodInfo.title">
+                            <img :src="'.' + FoodInfo.imgSrc" :alt="FoodInfo.title">
                         </div>
                         <div class="basket-content">
                             <div class="basket-names basket-block">

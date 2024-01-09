@@ -18,14 +18,11 @@ import Header from '@/components/Header'
         name: 'main-layout',
         computed: {
             name() {
-                if(!this.$store.getters.info.name) {
-                    this.$router.push("/login");
-                }
             }
         },
         async mounted() {
             if (!Object.keys(this.$store.getters.infoBasket).length) {
-                    await this.$store.dispatch('fetchInfoBasket')
+                await this.$store.dispatch('fetchInfoBasket')
             }
             if (!Object.keys(this.$store.getters.info).length) {
                 await this.$store.dispatch('fetchInfo')
