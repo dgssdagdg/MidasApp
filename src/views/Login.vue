@@ -107,7 +107,7 @@ export default {
             };
             try {
                 await this.$store.dispatch('login', formData)
-                window.location.href = '/';
+                window.location.href = 'https://dgssdagdg.github.io/MidasApp/';
                 // this.$router.push("/");
             } catch (e) {}
         },
