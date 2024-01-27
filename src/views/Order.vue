@@ -11,6 +11,29 @@
                         <span>/</span>
                         <div class="hot-menu-page-this">Оформление заказа</div>
                     </div>
+                    <div class="order-right">
+                        <div class="order-right-items">
+                            <div class="order-right-item"
+                                v-for="FoodInfo in FoodInfos"
+                                :key="FoodInfo.id"
+                            >
+                                <div class="order-right-img">
+                                    <img :src="'.' + FoodInfo.imgSrc" :alt="FoodInfo.title">
+                                </div>
+                                <div class="order-right-content">
+                                    <div class="order-right-name">{{ FoodInfo.title }}</div>
+                                    <div class="order-right-box">
+                                        <div class="order-right-total">{{ FoodInfo.sum }} шт</div>
+                                        <div class="order-right-price item-price">{{ (FoodInfo.price * FoodInfo.sum).toLocaleString() }} ₽</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-right-end">
+                            <div class="order-right-text">Итого к оплате:</div>
+                            <div class="order-right-total-price item-price">{{ totalPrice(FoodInfos).toLocaleString() }} ₽</div>
+                        </div>
+                    </div>
                     <div class="order-blocks order-blocks-one">
                         <div class="order-number">01. Контактные данные</div>
                         <div class="order-block">

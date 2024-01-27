@@ -33,7 +33,7 @@ import Header from '@/components/Header'
         },
         components: {
             Footer, Header
-        }
+        },
     }
 </script>
 

@@ -36,8 +36,4 @@
     input, textarea {
         background-color: white !important;
     }
-    input {
-        width: 360px !important;
-        height: 42px !important;
-    }
 </style>

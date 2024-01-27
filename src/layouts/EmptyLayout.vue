@@ -17,11 +17,11 @@ import messages from '@/utils/messages';
             error(fbError) {
                 console.log(fbError)
                 this.$error(messages[fbError.code] || 'Что-то пошла не так')
-            }
+            },
+
         }
     }
 </script>
 
 <style scoped>
-@import '@/assets/index.css';
 </style>

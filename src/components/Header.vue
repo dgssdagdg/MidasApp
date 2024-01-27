@@ -62,10 +62,57 @@
                             <path d="M10.8242 15.3914H8.91936V22.064H10.8242V15.3914Z" fill="white"/>
                         </svg>
                     </router-link>
+                    <div class="menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+    <div class="menu">
+        <router-link to="/" class="header-logo">
+            <img src="@/assets/img/logo.png" alt="Logo">
+        </router-link>
+        <div class="header-user">
+            <div class="header-user-block">
+                <svg width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 9.28132C4.98992 9.28132 2.93347 7.19149 2.93347 4.64066C2.96371 2.08983 4.98992 0 7.5 0C10.0101 0 12.0665 2.08983 12.0665 4.64066C12.0665 7.19149 10.0403 9.28132 7.5 9.28132ZM7.5 2.08983C6.10887 2.08983 4.98992 3.22695 4.98992 4.64066C4.98992 6.05437 6.10887 7.19149 7.5 7.19149C8.89113 7.19149 10.0101 6.05437 10.0101 4.64066C10.0101 3.22695 8.89113 2.08983 7.5 2.08983Z" fill="white"/>
+                    <path d="M12.9738 24V18.2553C12.9738 15.182 10.5242 12.7234 7.53024 12.7234C4.50605 12.7234 2.08669 15.2128 2.08669 18.2553V24H0V18.2553C0 14.0449 3.35685 10.6336 7.5 10.6336C11.6431 10.6336 15 14.0449 15 18.2553V24H12.9738Z" fill="white"/>
+                </svg>
+                <div class="header-user-name">{{ name }}</div>
+            </div>
+            <img @click.prevent="logout" style="height: 30px; width: 30px;" src="@/assets/img/leave.png" alt="Leave" class="header-user-leave">
+        </div>
+        <nav class="header-nav">
+            <ul class="header-list">
+                <router-link
+                    v-for="link in links"
+                    tag="li"
+                    :to="link.url"
+                    :key="link.title"
+                    :class="{'header-item':link.subList}"
+                >
+                    <a href="#" class="header-link">
+                        {{ link.title }}
+                        <span v-if="link.imgSrc">
+                            <img v-bind:src="link.imgSrc" alt="#">
+                        </span>
+                    </a>
+                    <div v-if="link.subList" class="header-sub-list">
+                        <router-link
+                            v-for="sublink in link.subList"
+                            :key="sublink.title"
+                            :to='sublink.url'
+                            class="header-sub-link">
+                                {{ sublink.title }}
+                        </router-link>
+                    </div>
+                </router-link>
+            </ul>
+        </nav>
+    </div>
 </template>
 
 <script>
@@ -139,21 +186,35 @@
             M.Dropdown.init(this.$refs.dropdown, {
                 constrainWidth: true
             })
+            document.addEventListener('click', function(e) {
+                let menuBtn = document.querySelector('.menu-btn');
+                let menu = document.querySelector('.menu');
+                if (menuBtn && e.target.closest('.menu-btn')) {
+                    menuBtn.classList.toggle('active');
+                    menu.classList.toggle('active');
+                } else if (menuBtn && !e.target.closest('.menu') && menu.closest('.active')) {
+                    menuBtn.classList.remove('active');
+                    menu.classList.remove('active');
+                }
+            })
         },
     }
 </script>
 
 <style scoped>
+
 nav {
+    color: #fff;
     background-color: transparent;
-    box-shadow: none;
-    float: none;
+    width: auto;
     height: auto;
-    line-height: 0;
+    line-height: normal;
+    box-shadow: none;
 }
-.header-list {
-    justify-content: center;
+nav ul a {
+    padding: 0 0;
 }
+
 .dropdown-content {
     display: flex;
     flex-direction: column;
@@ -198,5 +259,13 @@ nav {
 }
 .header-cart {
     position: relative;
+}
+.header-link span {
+    line-height: 0;
+}
+@media(max-width: 767px) {
+    .user-dropdown {
+        display: none;
+}
 }
 </style>

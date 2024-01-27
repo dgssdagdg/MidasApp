@@ -138,7 +138,8 @@ export default {
         }
         try {
           await this.$store.dispatch('register', formData)
-          this.$router.push('/');
+          window.location.href = '/';
+          // this.$router.push('/');
         } catch(e) {}
         
       },
@@ -146,9 +147,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import '@/assets/index.css';
+  @import '~materialize-css/dist/css/materialize.min.css';
 .center {
     margin: 10px 0 0 0;
 }
-@import '~materialize-css/dist/css/materialize.min.css';
+/* @import '~materialize-css/dist/css/materialize.min.css'; */
 </style>

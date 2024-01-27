@@ -10,6 +10,9 @@
                     </div>
                     <a href="tel:+7 (499) 841-67-29" class="intro-content-tel">+7 (499) 841-67-29</a>
                     <a href="#" class="intro-content-mail">delivery@midas.rest</a>
+                    <div style="color: white;">
+                      <a style="color: white;" target="_blank" href="https://icons8.com/icon/Q1xkcFuVON39/выход">выход</a> иконка от <a style="color: white;" target="_blank" href="https://icons8.com">Icons8</a>
+                    </div>
                 </div>
                 <div class="intro-img">
                     <img class="intro-img-image" src="@/assets/img/intro/img-bg.jpg" alt="Доставка готовой еды из фермерских продуктов!">
@@ -78,6 +81,28 @@
             <swiper class="services-sliders"
                 :space-between="20"
                 :slides-per-view="6"
+                :breakpoints="{
+                    '320': {
+                      slidesPerView: 1,
+                    },
+                    '400': {
+                      slidesPerView: 2,
+                    },
+                    '767': {
+                      slidesPerView: 3,
+                    },
+                    '1000': {
+                      slidesPerView: 5,
+                    },
+                    '1200': {
+                      slidesPerView: 6,
+                    }
+                }"
+                :modules="modules"
+                :navigation="{
+                  nextEl: '.services-button-next',
+                  prevEl: '.services-button-prev',
+                }"
             >
                 <swiper-slide
                         class="swiper-slide"
@@ -125,6 +150,8 @@
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
+// import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 export default {
     data: () => ({
         slides: [
@@ -442,6 +469,11 @@ export default {
       Swiper,
       SwiperSlide,
     },
+    setup() {
+      return {
+        modules: [Navigation],
+      };
+    },
     computed: {
         populars() {
             return this.$store.getters.TowarPageInfo
@@ -473,5 +505,8 @@ export default {
 <style scoped>
 .item-view-btn {
     cursor: pointer;
+}
+.swiper {
+  overflow: visible !important;
 }
 </style>

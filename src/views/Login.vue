@@ -65,58 +65,60 @@ import { email, required, minLength, helpers } from "@vuelidate/validators";
 import messages from '@/utils/messages'
 
 export default {
-setup: () => {
-    return { v$: useVuelidate() };
-},
-data: () => ({
-    email: "",
-    password: "",
-}),
-validations: {
-    email: {
-    email: helpers.withMessage("Введите корректный Email", email),
-    required: helpers.withMessage(
-        "Поле Email не должно быть пустым",
-        required
-    ),
+    setup: () => {
+        return { v$: useVuelidate() };
     },
-    password: {
-    required: helpers.withMessage("Введите пароль", required),
-    minLength: helpers.withMessage(
-        ({ $params, $model }) =>
-        `Пароль должен быть ${$params.min} символов. Сейчас он  ${$model.length}`,
-        minLength(6)
-    ),
+    data: () => ({
+        email: "",
+        password: "",
+    }),
+    validations: {
+        email: {
+        email: helpers.withMessage("Введите корректный Email", email),
+        required: helpers.withMessage(
+            "Поле Email не должно быть пустым",
+            required
+        ),
+        },
+        password: {
+        required: helpers.withMessage("Введите пароль", required),
+        minLength: helpers.withMessage(
+            ({ $params, $model }) =>
+            `Пароль должен быть ${$params.min} символов. Сейчас он  ${$model.length}`,
+            minLength(6)
+        ),
+        },
     },
-},
-mounted() {
-    if (messages[this.$route.query.message]) {
-        this.$message(messages[this.$route.query.message])
-    }
-},
-methods: {
-    async submitHandler() {
-        console.log(this.v$);
-        if (this.v$.$invalid) {
-            this.v$.$touch();
-            return;
+    mounted() {
+        if (messages[this.$route.query.message]) {
+            this.$message(messages[this.$route.query.message])
         }
-        const formData = {
-            email: this.email,
-            password: this.password,
-        };
-        try {
-            await this.$store.dispatch('login', formData)
-            this.$router.push("/");
-        } catch (e) {}
     },
-},
+    methods: {
+        async submitHandler() {
+            console.log(this.v$);
+            if (this.v$.$invalid) {
+                this.v$.$touch();
+                return;
+            }
+            const formData = {
+                email: this.email,
+                password: this.password,
+            };
+            try {
+                await this.$store.dispatch('login', formData)
+                window.location.href = '/';
+                // this.$router.push("/");
+            } catch (e) {}
+        },
+    },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import '@/assets/index.css';
+  @import '~materialize-css/dist/css/materialize.min.css';
 .center {
     margin: 10px 0 0 0;
 }
-@import '~materialize-css/dist/css/materialize.min.css';
 </style>
